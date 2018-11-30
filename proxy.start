@@ -1,0 +1,18 @@
+#!/bin/sh
+
+## hyphop ##
+D=$(dirname $0)
+. $D/proxy.conf
+
+[ "$debug" ] && ARGS="-f -v"
+
+cmd="$transocks $ARGS "$@" \
+    -p $port -H $host \
+    -s $socks_port -S $socks_host \
+    -P $PIDFILE\
+    "
+
+echo "[i] RUN $cmd">&2
+$cmd
+
+$D/proxy.redirect

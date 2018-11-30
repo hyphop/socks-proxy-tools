@@ -1,0 +1,16 @@
+#!/bin/sh
+
+## hyphop ##
+
+. $(dirname $0)/proxy.conf
+
+[ -f $PIDFILE ] && {
+    PID=$(cat $PIDFILE)
+    [ -d /proc/$PID ] && { 
+	echo "[i] $0 $PID as $(cat /proc/$PID/cmdline)">&2
+	exit 1
+    }
+}
+
+pgrep -fa $transocks
+

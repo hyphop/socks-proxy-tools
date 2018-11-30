@@ -1,0 +1,14 @@
+#!/bin/sh
+
+## hyphop ##
+
+set -e
+
+echo "[i] $0">&2
+
+runas=../bin/runas
+chown root:root $runas
+chmod u+s $runas
+ls -l1a $runas
+
+

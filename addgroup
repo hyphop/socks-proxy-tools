@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. $(dirname $0)/proxy.conf
+
+
+cmd="groupadd $gid"
+
+$cmd
+
+

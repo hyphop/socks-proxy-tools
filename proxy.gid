@@ -1,0 +1,7 @@
+#!/bin/sh
+##!/usr/bin/perl
+## hyphop ##
+#warn "uid:gid $>:$)\n";
+
+id
+

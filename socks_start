@@ -1,0 +1,10 @@
+#!/bin/sh
+
+## hyphop ##
+
+D="$(dirname $0)"
+
+$D/../fmsproxy/mysocks56
+
+############
+

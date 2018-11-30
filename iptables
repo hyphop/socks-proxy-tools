@@ -1,0 +1,11 @@
+#!/bin/sh
+
+## hyphop ##
+
+#chown root myscript
+#chmod u+s myscript
+
+IPTABLES=$(which iptables)
+id
+exec $IPTABLES "$@"
+

@@ -12,7 +12,7 @@ clean:
 	rm -f *.o transocks_ev
 
 transocks_ev: $(OBJ)
-	$(CC) -o bin/transocks_ev $(OBJ) -L$(LIBEVENT_LIB_DIR) -Wl,--rpath -Wl,$(LIBEVENT_LIB_DIR) -levent
+	$(CC) -o ../bin/transocks_ev $(OBJ) -L$(LIBEVENT_LIB_DIR) -Wl,--rpath -Wl,$(LIBEVENT_LIB_DIR) -levent
 
 .c.o:
 	$(CC) -c $(CFLAGS) $<

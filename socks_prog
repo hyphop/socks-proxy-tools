@@ -1,0 +1,19 @@
+#!/bin/sh
+
+## hyphop ##
+
+. $(dirname $0)/proxy.conf
+
+echo "$0 ($gid) $@"
+
+[ "$@" ] || {
+    echo "[i] USAGE $0 ARGS" >&2
+    
+    exit 1
+}
+
+sudo -g $gid "$@"
+
+
+############
+

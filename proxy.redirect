@@ -1,0 +1,31 @@
+#!/bin/sh
+
+## hyphop ##
+
+D=$(dirname $0)
+. $D/proxy.conf
+
+iptables="$(which iptables)"
+
+ipt="$iptables -t nat"
+ipt_add="$ipt -I"
+ipt_del="$ipt -D"
+
+runas="$D/bin/runas"
+[ -f "$runas" ] || runas=sudo
+
+iptcmd="OUTPUT -m owner --gid-owner $gid -p tcp -j REDIRECT --to-ports $port"
+
+echo "[i] $0 STOP - $runas" >&2
+$runas $ipt_del $iptcmd 2>/dev/null
+[ "$1" = "stop" ] && { 
+exit
+}
+
+echo "[i] $0 START - $runas" >&2
+echo "$ipt_add $iptcmd" >&2
+$runas $ipt_add $iptcmd
+
+
+
+

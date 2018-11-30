@@ -1,0 +1,31 @@
+#!/bin/sh
+
+## hyphop ##
+
+. $(dirname $0)/proxy.conf
+
+[ -f $PIDFILE ] && {
+    PID=$(cat $PIDFILE)
+
+    echo "[i] detect pidfile $PIDFILE -> $PID">&2
+
+    [ -d /proc/$PID ] && {
+	echo "[i] stop by pid $PID $(cat /proc/$PID/cmdline)">&2
+	kill $PID
+    }
+
+    sleep 1
+
+    [ -d /proc/$PID ] || {
+	echo "[i] remove $PIDFILE">&2
+	rm $PIDFILE
+    } 
+    
+}
+
+[ "$1" ] && {
+    cmd="pkill -f $transocks"
+    echo "[i] try KILL by" >&2
+    echo $cmd >&2
+    $cmd
+}
