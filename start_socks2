@@ -1,0 +1,13 @@
+#!/bin/sh
+port=4448
+#port=55182
+host=127.0.0.1
+gid=proxy2
+socks_port=1111
+socks_port=55183
+socks_host=1.1.1.1
+socks_host=127.0.0.1
+#pkill transocks_ev
+transocks_ev -p $port -H $host -s $socks_port -S $socks_host
+iptables -t nat -D OUTPUT -m owner --gid-owner $gid -p tcp -j REDIRECT --to-ports $port
+iptables -t nat -I OUTPUT -m owner --gid-owner $gid -p tcp -j REDIRECT --to-ports $port

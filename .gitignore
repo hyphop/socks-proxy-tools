@@ -2,3 +2,4 @@ transocks/bin
 transocks/*.o
 git_*
 syncit*
+start_
