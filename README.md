@@ -17,4 +17,4 @@ Transparent Socks Proxy Tools
 
 ## transocks
 
-[read about transocks](../) 
+[read about transocks](transocks/) 
