@@ -1,0 +1,6 @@
+#!/bin/sh
+
+## hyphop ##
+
+apt-get install libevent-dev
+
