@@ -2,5 +2,7 @@
 
 ## hyphop ##
 
+cd $(dirname $0)
+
 apt-get install libevent-dev
 

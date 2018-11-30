@@ -1,6 +1,7 @@
-# tranSOCKS_ev - libevent-based, non-forking and transparent SOCKS5-Proxy
+tranSOCKS_ev - libevent-based, non-forking and transparent SOCKS5-Proxy
 
-## Introduction
+Introduction
+------------
 
 tranSOCKS_ev is a transparent socks proxy, inspired by the idea of
 transocks (http://transocks.sourceforge.net).
@@ -9,20 +10,9 @@ In some cases you might redirect TCP/IP-Traffic on your network-router
 trough a transparent SOCKS-Proxy. tranSOCKS_ev is a user-space daemon for
 linux that does this job perfectly based on iptable-filter-rules.
 
-## Get Source & Build
 
-    cd /tmp    
-    # get source from git
-    git clone socks-proxy-tools
-    # prepare
-    cd socks-proxy-tools
-    transocks/transocks_ev.prepare
-    # make
-    transocks/transocks_ev.make
-    # ok its ready to use
-    transocks/bin/transocks_ev
-
-## Installation
+Installation
+------------
 
 tranSOCKS_ev depends on libevent, which is available at
 http://monkey.org/~provos/libevent/.
@@ -31,7 +21,8 @@ tranSOCKS_ev can be build by typing "make" in the source-directory.
 If your libevent wasn't installed at the standard-location you might
 adjuist the values specified in Makefile.
 
-## Usage
+Usage
+-----
 
 Run transocks_ev from whereever you keep it.
 
@@ -67,7 +58,6 @@ You will need to setup your firewall on your own because nobody
 can guess your special needs.
 You may use a script like this:
 
-```
 #!/bin/bash
 
 # Where to find iptables
@@ -103,9 +93,11 @@ $IPTABLES -t nat -A OUTPUT -j transocks
 
 # Filter all traffic that is routed over this host
 $IPTABLES -t nat -A PREROUTING -j transocks
-```
 
-## Contact
+
+
+Contact
+-------
 
 tranSOCKS_ev is being developed at tiggersWelt.net.
 You may send bug reports, ideas and patches to
@@ -138,10 +130,10 @@ Toni Spets
  + Privilege-Dropping
  + Write PID-File
 
-## Licensing
+Licensing
+---------
 
 tranSOCKS_ev is distributed within the terms of
 creative commons attribution-share alike 3.0 germany.
 
 See http://creativecommons.org/licenses/by-sa/3.0/ for more information
-
