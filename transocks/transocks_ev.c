@@ -165,7 +165,8 @@ void client_remove (struct proxy_con *con, const char *msg, ...) {
 
   if (loglevel >= 1) {
     /* compute statistics */
-    clock_gettime (CLOCK_MONOTONIC, &now);
+//art
+//    clock_gettime (CLOCK_MONOTONIC, &now);
     ts_subtract (&now, &con->conn_time, &interval);
     secs = interval.tv_sec + (1.0 * interval.tv_nsec / 1000000000L);
     svr_rate = con->ep[EI_SERVER].octets / secs / 1024;
@@ -656,7 +657,9 @@ void new_connection (int fd, short event, void *arg) {
   }
   bzero (con, sizeof (struct proxy_con));
   con->id = ++last_connid;
-  clock_gettime (CLOCK_MONOTONIC, &con->conn_time);
+
+//art
+//  clock_gettime (CLOCK_MONOTONIC, &con->conn_time);
 
   /* Reschedule ourself */
   event_add (arg, NULL);
@@ -927,7 +930,8 @@ int main (int argc, char **argv) {
     evdns_init ();
     randfd = open ("/dev/urandom", O_RDONLY);
     if (randfd == -1)
-      fprintf (stderr, "can't open /dev/urandom: %s (%d). continuing, but will not randomize dns replies.\n");
+      fprintf (stderr, "can't open /dev/urandom: %s (%d). continuing, but will not randomize dns replies.\n",
+	"", 0 );
   }
 
   event_set (&ev_server, serverfd, EV_READ, new_connection, &ev_server);
