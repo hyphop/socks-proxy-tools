@@ -1,29 +1,54 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 //## hyphop ##
 
-   int main(int argc, char* argv[], char** envp)
-   {
-   char *gs;
-   int gid = 0 ;
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#define NAME "runasg"
 
-   gs = getenv("GID");
 
-   if (gs) {
-	gid=atoi(gs);
-   }
+struct stat sb;
 
-   setgid(gid);
-   argv++;
+int main(int argc, char *argv[], char **envp) {
+  char *gs;
+  int gid = 0;
+  int uid;
 
-   fprintf(stderr, "%s GID: %d\n", "runasg", gid);
+  if (argc < 2) {
+    fprintf(stderr, "USAGE: runasg [ progname ] [@args]\n");
+    exit(1);
+  }
 
-   execve(argv[0], argv, envp);
-   perror("execve");   /* execve() returns only on error */
-   exit(EXIT_FAILURE);
-   return 0;
-   }
+  if (stat(argv[1], &sb) == 0 && sb.st_mode & S_IXUSR) {
+    ;
+  } else {
 
+    fprintf(stderr, "[i] %s `%s` - is not exec - try: `%s $(which %s)`\n", NAME,
+            argv[1], NAME, argv[1]);
+    exit(1);
+  }
+
+  gs = getenv("GID");
+
+  if (gs) {
+    gid = atoi(gs);
+  }
+
+  setgid(gid);
+  uid = getuid();
+
+  fprintf(stderr, "%s UID: %d, GID: %d CMD: ", NAME, uid, gid);
+  for (int i = 1; i < argc; i++) {
+    fprintf(stderr, "%s ", argv[i]);
+  }
+  fprintf(stderr, "\n");
+
+  argv++;
+
+  execve(argv[0], argv, envp);
+  perror("execve"); /* execve() returns only on error */
+  exit(EXIT_FAILURE);
+  return 0;
+}

@@ -1,10 +1,17 @@
 # runas 
 
-exec program as root
+exec program as another USER or GROUP / UID GID
 
 ## Usage
 
     runas path_to_prog [ prog_args ]
+    runasg path_to_prog [ prog_args ]
+
+
+## setup UID / GID
+
+    UID=1 GID=2 runas path_to_prog [ prog_args ]
+    GID=2 runasg path_to_prog [ prog_args ]
 
 ## Note
 
