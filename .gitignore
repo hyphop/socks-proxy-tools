@@ -1,5 +1,6 @@
 transocks/bin
 transocks/*.o
+bin/*
 git_*
 syncit*
 start_
